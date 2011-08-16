@@ -203,7 +203,7 @@ void * crack_thread() {
 		Pipe = popen(cmd, "r");
 		while (!feof(Pipe)) {
 		   fgets((char*)&ret, 200, Pipe);
-		   if (strcasestr(ret, "ok") != NULL) {
+		   if (strcasestr(ret, "ok")) {
 			strcpy(password_good, current);
 			xmlMutexLock(finishedMutex);
 			finished = 1;
@@ -280,7 +280,7 @@ void init(int argc, char **argv) {
 				}
 			} else if (strcmp(argv[i],"--type") == 0) {
 				if ((i + 1) < argc) {
-					sscanf(argv[++i], "%s", &test);
+					sscanf(argv[++i], "%s", test);
 					for (j = 0; strcmp(TYPE[j], "") != 0; j++) {
 						if (strcmp(TYPE[j], test) == 0) {
 							strcpy(finalcmd, CMD[j]);
